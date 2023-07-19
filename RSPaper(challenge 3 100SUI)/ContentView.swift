@@ -7,6 +7,9 @@
 
 import SwiftUI
 
+
+
+
 struct ContentView: View {
     let cases = ["Rock","Scissors","Paper"]
  
@@ -27,13 +30,8 @@ struct ContentView: View {
                 .padding()
                 .italic()
             Spacer()
-          
-                Image(systemName: chooseUserPic(selection: cases[correctAnswer]))
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 200, height: 100)
-                    .imageScale(.large)
-                    .foregroundColor(.accentColor)
+          MyImageView(imageName: chooseUserPic(selection: cases[correctAnswer]))
+
             Text("You need to \(isWin == 1 ? "Win" : "Loose")")
                 .font(.title)
                 .foregroundColor(.pink)
@@ -45,17 +43,8 @@ struct ContentView: View {
             
           
             
-            
-            
-            Image(systemName: chooseUserPic(selection: selection))
-            
-                .resizable()
-                .scaledToFit()
-                .frame(width: 200, height: 100)
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
+            MyImageView(imageName: chooseUserPic(selection: selection))
                        
-            
                     Picker (
                         selection: $selection,
                         label: Text("Picker"),
@@ -147,6 +136,20 @@ struct ContentView: View {
         case "Rock": return "mountain.2"
         default: return "scissors"
         }
+    }
+}
+
+
+struct MyImageView: View {
+    
+    let imageName: String
+    var body: some View {
+        Image(systemName: imageName)
+            .resizable()
+            .scaledToFit()
+            .frame(width: 200, height: 100)
+            .imageScale(.large)
+            .foregroundColor(.accentColor)
     }
 }
 
